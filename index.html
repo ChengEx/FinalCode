@@ -18,12 +18,12 @@
                 終極密碼
             </h1>
         </div>
-        <div class="row" >
+        <div class="row">
             <h2 class="col text-center" id="result">
                 0~100
             </h2>
         </div>
-        
+
 
         <div class="input-group mt-5">
             <input type="text" id="input" class="form-control text-right" aria-describedby="input">
@@ -46,9 +46,13 @@
             <button class="col ml-3 text-center input-pad btn-lg">9</button>
         </div>
         <div class="row mt-3">
-            <button class="col text-center btn-lg" id="clear" onclick="clear()">Clear</button>
+            <button class="col text-center btn-lg" id="clearaaa" onclick="clearaaa()">Clear</button>
             <button class="col ml-3 text-center input-pad btn-lg">0</button>
             <button class="col ml-3 text-center btn-lg" id="enter" onclick="enter()">Enter</button>
+
+        </div>
+        <div class="row mt-3">
+            <button class="col text-center btn-lg" id="again" onclick="again()">重新</button>
 
         </div>
 
@@ -58,6 +62,9 @@
     </div>
 
     <script>
+
+
+
         var inputButtons = document.getElementsByClassName("input-pad");
         for (var i = 0; i < inputButtons.length; i++) {
             inputButtons[i].onclick = inputButton;
@@ -75,35 +82,46 @@
         var ram = Math.floor(Math.random() * (max - min + 1) + min);
         var input = document.getElementById("input");
         var result = document.getElementById("result");
-        
-        function clear() {
-            input.textContent = "";
+        console.info(ram);
+        function again() {
+            max = 100;
+            min = 0;
+            ram = Math.floor(Math.random() * (max - min + 1) + min);
+            console.info(ram);
+            result.innerText = "0~100";
+        }
+
+        function clearaaa() {
+            input.value = "";
         }
 
         function enter() {
             var thisround = input.value;
-            if(thisround.length != 2)
-            {
+            if (thisround.length != 2) {
                 alert("輸入錯誤 傻屌~");
+                input.value = "";
             }
-            if(ram == input.value) {
-                alert("過關");
-            }
-            if(input.value > ram) {
-                if(input.value < max) {
-                    max = input.value;
+            else {
+                if (ram == input.value) {
+                    alert("過關");
                 }
-            }
-            if(input.value < ram) {
-                if(input.value > min) {
-                    min = input.value;
+                if (input.value > ram) {
+                    if (input.value < max) {
+                        max = input.value;
+                    }
                 }
+                if (input.value < ram) {
+                    if (input.value > min) {
+                        min = input.value;
+                    }
+                }
+                result.innerText = min + "~" + max;
+                input.value = "";
             }
-            result.innerText = min + "~" + max;
-            input.value="";
+
         }
 
-        console.info(ram);
+        
     </script>
 </body>
 
