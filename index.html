@@ -97,7 +97,10 @@
 
         function enter() {
             var thisround = input.value;
-            if (thisround.length != 2) {
+            var thisround2 = thisround.substr(0,1);
+            console.info(thisround2);
+            
+            if(thisround.length != 2 || thisround2 == "0") {
                 alert("輸入錯誤 傻屌~");
                 input.value = "";
             }
